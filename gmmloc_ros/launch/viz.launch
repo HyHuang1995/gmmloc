@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+	<node pkg="tf2_ros" type="static_transform_publisher" name="static_br1" args="0 0 0 -0.5, 0.5, 0.5, 0.5 map world" />
+
+	<node type="rviz" name="rviz" pkg="rviz" args="-d $(find gmmloc_ros)/cfg/viz.rviz" />
+
+</launch>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<launch>
+	<arg name="verbose" default="false" />
+	<arg name="gdb" default="false" />
+	<arg name="gmm" default="true" />
+	<arg name="seq" default="V2_01_easy" />
+	<arg name="online" default="true" />
+	<arg name="viewer" default="true" />
+
+	<arg if="$(arg gdb)" name="prefix" value="gdb -ex run --args" />
+	<arg unless="$(arg gdb)" name="prefix" value="" />
+	<arg if="$(arg verbose)" name="args" value="-alsologtostderr -colorlogtostderr" />
+	<arg unless="$(arg verbose)" name="args" value="-alsologtostderr -colorlogtostderr --minloglevel=1" />
+
+	<include if="$(arg viewer)" file="$(find gmmloc_ros)/launch/viz.launch"/>
+
+	<!-- <node pkg="tf2_ros" type="static_transform_publisher" name="static_br2" args="0 0 0 0.5 0.5 0.5 0.5 camera view" /> -->
+
+	<node name="gmmloc" pkg="gmmloc" type="gmmloc_node" args="$(arg args)" launch-prefix="$(arg prefix)" output="screen" clear_params="true">
+
+		<param name="dataset" value="euroc" />
+
+		<param name="vocabulary_path" value="$(find gmmloc_ros)/voc/ORBvoc.bin" />
+		<param name="output_path" value="$(find gmmloc_ros)/expr/" />
+		<param name="data_path" value="/PATH/TO/EUROC/DATASET/$(arg seq)/mav0/" />
+		<param name="gt_path" value="$(find gmmloc_ros)/data/gt_sync/$(arg seq).txt" />
+
+		<!--param name="depth_path" value="/mnt/hd2/Dataset/tum_rgbd/fr3_str_far/ass_loc.txt" /-->
+		<param name="use_gmm" value="$(arg gmm)" />
+		<param name="online" value="$(arg online)" />
+		<param name="viewer" value="$(arg viewer)" />
+
+		<param name="gmm_path" value="$(find gmmloc_ros)/data/map/v2.gmm" />
+
+		<param name="rect_config" value="$(find gmmloc_ros)/cfg/euroc_rect.yaml" />
+		<rosparam command="load" file="$(find gmmloc_ros)/cfg/v2.yaml" />
+
+	</node>
+</launch>

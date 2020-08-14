@@ -1,0 +1,18 @@
+- git:
+    local-name: deps/catkin_simple
+    uri: git@github.com:catkin/catkin_simple.git
+- git:
+    local-name: deps/eigen_catkin
+    uri: git@github.com:ethz-asl/eigen_catkin.git
+- git:
+    local-name: deps/gflags_catkin
+    uri: git@github.com:ethz-asl/gflags_catkin.git
+- git:
+    local-name: deps/glog_catkin
+    uri: git@github.com:ethz-asl/glog_catkin.git
+- git:
+    local-name: deps/protobuf_catkin
+    uri: git@github.com:ethz-asl/protobuf_catkin.git
+- git:
+    local-name: deps/g2o_catkin
+    uri: git@github.com:hyhuang1995/g2o_catkin.git

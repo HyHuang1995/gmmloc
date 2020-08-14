@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package gmmloc;
+
+message ComponentProto {
+
+    optional bool is_degenerated = 1;
+
+    optional bool is_salient = 2;
+
+    repeated double mean = 3 [packed=true];
+
+    repeated double covariance = 4 [packed=true];
+}
+
+message GMMProto{
+
+    required int32 num = 1;
+
+    repeated ComponentProto components = 2;
+}

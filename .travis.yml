@@ -1,0 +1,41 @@
+dist: bionic
+sudo: required
+cache:
+    - apt
+env:
+    global:
+    - ROS_CI_DESKTOP="bionic"
+    - ROS_DISTRO="melodic"
+    - CI_SOURCE_PATH=$(pwd)
+
+before_install:
+    - sudo sh -c "echo \"deb http://packages.ros.org/ros/ubuntu $ROS_CI_DESKTOP main\" > /etc/apt/sources.list.d/ros-latest.list"
+    - sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+    - sudo apt-get update
+    - sudo apt-get install dpkg
+    - sudo apt-get install -y libeigen3-dev libqglviewer-dev-qt5 libopencv-dev libsuitesparse-dev
+    - sudo apt-get install -y python-catkin-pkg python-rosdep python-wstool 
+    - sudo apt-get install python-wstool python-catkin-tools ros-$ROS_DISTRO-desktop ros-melodic-cmake-modules
+    - source /opt/ros/$ROS_DISTRO/setup.bash
+
+install:
+    - mkdir -p ~/catkin_ws/src
+    - cd ~/catkin_ws/
+
+    # init catkin
+    - catkin init
+    - catkin config --extend /opt/ros/melodic
+    - catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
+    - catkin config --merge-devel
+
+    # create symbolic
+    - cd src
+    - ln -s $CI_SOURCE_PATH ./gmmloc
+    # install deps
+    - wstool init . ./gmmloc/.gmmloc_https.install
+    - wstool update
+
+before_script:
+    - echo $(pwd)
+script:
+    - catkin build gmmloc_ros

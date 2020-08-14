@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>gmmloc</name>
+  <version>0.0.0</version>
+  <description>gmmloc ros package</description>
+
+  <maintainer email="hyhuang1995@gmail.com">hyhuang</maintainer>
+
+  <license>GPL-v3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>catkin_simple</buildtool_depend>
+
+  <depend>glog_catkin</depend>
+  <depend>gflags_catkin</depend>
+  <depend>g2o_catkin</depend>
+  <depend>eigen_catkin</depend>
+  <depend>orb_dbow2</depend>
+  <depend>protobuf_catkin</depend>
+
+  <depend>roscpp</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+</package>

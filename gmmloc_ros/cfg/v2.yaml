@@ -1,0 +1,41 @@
+# %YAML:1.0
+
+sensor_type: 1
+camera:
+  fx: 435.2046959714599
+  fy: 435.2046959714599
+  cx: 367.4517211914062
+  cy: 252.2008514404297
+
+  # 0, 1, 2
+  distortion_type: 0
+  # distortion: [-0.158714574009141, 0.005655228335481,5.803507635175249e-04, -0.005116425300158, 0.018317072669110]
+  fps: 20.0
+  width: 752
+  height: 480
+
+  bf: 47.90639384423901
+
+  do_equalization: false
+  do_rectify: true
+
+frame:
+  th_depth: 35.0
+  num_features: 1200
+
+map:
+  neighbor_dist_thresh : 2.5
+
+loc:
+  tri_use_stereo: true
+  tri_check_deg: true
+  tri_lambda2: 400.0
+
+  tri_check_str_chi2: true
+  tri_str_thresh: 0.0064
+
+  ba_lambda2: 400.0
+  ba_verbose: false
+
+  ba_first_as_prior: true
+
