@@ -88,7 +88,7 @@ We provide examples on EuRoC Vicon Room sequences. For example, to run the demo 
 
 1. Download the [sequence](https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets) (ASL Format)
 
-2. Replace the [**/PATH/TO/EUROC/DATASET/**](https://github.com/HyHuang1995/gmmloc/blob/5857755fe340f6895d977324c7750a1e24a6260c/gmmloc_ros/launch/v1.launch#L25) in [v1.launch](https://github.com/HyHuang1995/gmmloc/blob/master/gmmloc_ros/launch/v1.launch) with where the sequence is decompressed:
+2. Replace the [**/PATH/TO/EUROC/DATASET/**](https://github.com/HyHuang1995/gmmloc/blob/770eadc99229eff17f2f613e969e4e9c10499496/gmmloc_ros/launch/v1.launch#L25) in [v1.launch](https://github.com/HyHuang1995/gmmloc/blob/master/gmmloc_ros/launch/v1.launch) with where the sequence is decompressed:
 ```
 <param name="data_path" value="/PATH/TO/EUROC/DATASET/$(arg seq)/mav0/" />
 ```
@@ -105,7 +105,7 @@ roscd gmmloc_ros
 ./scripts/evaluate_euroc.sh
 ```
 and the results would be saved to **gmmloc_ros/expr**.
-By default, we follow the evaluation protocol of [DSO](https://vision.in.tum.de/research/vslam/dso) to perform evaluation without multi-threading. If you would like to run the script in online mode, uncomment this line in the script:
+By default, we follow the evaluation protocol of [DSO](https://vision.in.tum.de/research/vslam/dso) to perform evaluation without multi-threading. If you would like to run the script in online mode, uncomment [this line](https://github.com/HyHuang1995/gmmloc/blob/770eadc99229eff17f2f613e969e4e9c10499496/gmmloc_ros/scripts/evaluate_euroc.sh#L60) in the script:
 ```
 rosparam set /gmmloc/online True
 ```
