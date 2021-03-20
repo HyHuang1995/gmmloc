@@ -330,13 +330,13 @@ void Localization::createMapPoints() {
                                               Eigen::ComputeFullV);
         Vector4d vt = svd.matrixV().col(3);
 
-        if (vt(4) <= numeric_limits<double>::epsilon()) {
-          nsvd++;
-          continue;
-        }
+        // if (vt(3) <= numeric_limits<double>::epsilon()) {
+        //   nsvd++;
+        //   continue;
+        // }
 
         // Euclidean coordinates
-        pt3d = vt.topRows(3) / vt(4);
+        pt3d = vt.topRows(3) / vt(3);
         from_mono = true;
       } else if (bStereo1 && cosParallaxStereo1 < cosParallaxStereo2) {
         curr_kf_->unproject3(idx1, &pt3d);
